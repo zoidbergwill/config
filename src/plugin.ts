@@ -284,14 +284,14 @@ async function findRoot(name: string | undefined, root: string) {
   for (let next of up(root)) {
     let cur
     if (name) {
-      cur = path.join(next, 'node_modules', name, 'package.json')
+      cur = path.join(next, 'npm', 'node_modules', name, 'package.json');
       if (await exists(cur)) return path.dirname(cur)
       try {
         let pkg = await loadJSON(path.join(next, 'package.json'))
         if (pkg.name === name) return next
       } catch {}
     } else {
-      cur = path.join(next, 'package.json')
+      cur = path.join(next, 'npm', 'node_modules', '@oclif', 'config', 'package.json');
       if (await exists(cur)) return path.dirname(cur)
     }
   }
