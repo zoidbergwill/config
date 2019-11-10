@@ -47,7 +47,8 @@
     "build": "rm -rf lib && tsc",
     "lint": "tsc -p test --noEmit && tslint -p test",
     "posttest": "yarn run lint",
-    "prepack": "yarn run build",
+    "prepack": "rm -rf lib && tsc",
+    "postinstall": "tsc",
     "test": "mocha --forbid-only \"test/**/*.test.ts\"",
     "version": "conventional-changelog -p angular -i CHANGELOG.md -s -r 0 && git add CHANGELOG.md"
   },
